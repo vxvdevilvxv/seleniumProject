@@ -1,8 +1,7 @@
 import time
-
 import pyperclip
 from selenium import webdriver
-import math, os.path
+import math
 
 
 def calc(value):
@@ -15,20 +14,26 @@ link = 'http://suninjuly.github.io/alert_accept.html'
 try:
     browser.get(link)
 
+    # находим и нажимаем кнопку
     submit = browser.find_element_by_class_name('btn-primary')
     submit.click()
 
+    # переключамся на алерт и принимаем его
     confirm = browser.switch_to.alert
     confirm.accept()
 
+    # ищем элемент с необходимым значением на странице
     x = browser.find_element_by_id('input_value').text
 
+    # вставляем в форму ответа результат расчета по формуле
     answer = browser.find_element_by_id('answer')
     answer.send_keys(calc(x))
 
+    # находим и нажимаем кнопку отправки
     submit = browser.find_element_by_class_name('btn-primary')
     submit.click()
 
+    # переключаеся на алерт и считываем текст, разбиваем по пробелу и отправляем в буфер обмена число
     alert = browser.switch_to.alert
     pyperclip.copy(alert.text.split()[-1])
     alert.accept()
