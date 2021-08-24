@@ -14,7 +14,7 @@ try:
         element.send_keys('some_text')
 
     upload_button = browser.find_element_by_id('file')
-    file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'file.txt')
+    file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../file.txt')
     upload_button.send_keys(file_path)
 
     submit = browser.find_element_by_class_name('btn-primary')
