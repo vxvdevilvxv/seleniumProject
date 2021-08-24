@@ -1,5 +1,6 @@
+import pyperclip
 from selenium import webdriver
-import time, os.path
+import os.path
 
 browser = webdriver.Chrome()
 link = 'http://suninjuly.github.io/file_input.html'
@@ -20,7 +21,7 @@ try:
     submit.click()
 
     alert = browser.switch_to.alert
-    print(alert.text.split()[-1])
+    pyperclip.copy(alert.text.split()[-1])
     alert.accept()
 
 finally:
